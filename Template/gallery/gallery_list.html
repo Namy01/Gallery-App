@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery App</title>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #fff;
+        }
+        h1 {
+            text-align: center;
+            font-family: 'Cursive';
+        }
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        .gallery-item {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .gallery-content {
+            padding: 10px 15px;
+        }
+        .title {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .subtitle {
+            color: gray;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Artify</h1>
+    <div class="gallery-container">
+        {% for gallery in galleries %}
+        <div class="gallery-item">
+            <img src="{{ gallery.cover_image.url }}" alt="{{ gallery.title }}">
+            <div class="gallery-content">
+                <div class="title">{{ gallery.title }}</div>
+           
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
