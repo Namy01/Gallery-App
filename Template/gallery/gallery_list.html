@@ -53,9 +53,14 @@
             <img src="{{ gallery.cover_image.url }}" alt="{{ gallery.title }}">
             <div class="gallery-content">
                 <a href="{% url 'edit-gallery' gallery.id %}">Edit</a>
+                <a href="{% url 'del' gallery.id %}">Delete</a>
             </div>
+            
         </div>
         {% endfor %}
+        <div class="gallery-Create">
+                <a href="{% url 'create-gallery' %}">Create</a>
+            </div>
     </div>
 </body>
 </html>

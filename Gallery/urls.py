@@ -22,6 +22,7 @@ from Gallery import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('gallery_app.urls')), 
+    path('api/', include('gallery_api.urls')),
 
 ]
 
