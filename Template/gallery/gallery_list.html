@@ -51,16 +51,23 @@
         {% for gallery in galleries %}
         <div class="gallery-item">
             <img src="{{ gallery.cover_image.url }}" alt="{{ gallery.title }}">
-            <div class="gallery-content">
-                <a href="{% url 'edit-gallery' gallery.id %}">Edit</a>
-                <a href="{% url 'del' gallery.id %}">Delete</a>
-            </div>
+
+
+            {% if user.user_type == 'creator' or user.user_type == 'admin' %}
+    <div class="gallery-content">
+        <a href="{% url 'edit-gallery' gallery.id %}">Edit</a>
+        <a href="{% url 'del' gallery.id %}">Delete</a>
+    </div>
+{% endif %}
             
         </div>
         {% endfor %}
-        <div class="gallery-Create">
-                <a href="{% url 'create-gallery' %}">Create</a>
-            </div>
+        {% if user.user_type == 'creator' or user.user_type == 'admin' %}
+    <div class="gallery-Create">
+        <a href="{% url 'create-gallery' %}">Create</a>
+    </div>
+{% endif %}
+
     </div>
 </body>
 </html>

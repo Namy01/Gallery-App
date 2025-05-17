@@ -1,0 +1,149 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('/static/your-background-image.jpg');
+            /* Optional */
+            background-size: cover;
+            background-position: center;
+            color: black;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .login-container {
+            background: transparent;
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 350px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 28px;
+        }
+        input
+        {
+            background-color: #5a189a;
+        }
+
+        input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #645c5c4e; /* more visible */
+    border-radius: 25px;
+    background: #ffffff; /* solid white for visibility */
+    color: #000000; /* black text */
+    font-size: 16px;
+}
+
+input::placeholder {
+    color: #555; /* darker placeholder text for better readability */
+    opacity: 1; /* make sure it's fully visible */
+}
+
+        button[type="submit"] {
+            width: 20%;
+            padding: 12px;
+            border: none;
+            border-radius: 25px;
+            background: rgb(44, 118, 71);
+            color: whitesmoke;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            text-align: center;
+
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-footer a {
+            color: #5a189a;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .error {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        .options label {
+            display: flex;
+            align-items: center;
+        }
+
+        .options input[type="checkbox"] {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-container">
+        <h2>Login</h2>
+
+        <form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <input type="text" name="username" placeholder="Username" required />
+  <input type="password" name="password" placeholder="Password" required />
+  <button type="submit">Login</button>
+</form>
+
+        {% if user.is_authenticated %}
+        <p>You are logged in as {{ user.username }}.</p>
+        <a href="{% url 'logout' %}">Log Out</a>
+        {% endif %}
+
+        {% if form.errors %}
+        <p class="error">Invalid username or password. Please try again.</p>
+        {% endif %}
+
+        <div class="login-footer">
+            <p>Don't have account? <a href="{% url 'register' %}">Register</a></p>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+</body>
+
+</html>

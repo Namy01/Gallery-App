@@ -18,11 +18,16 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from Gallery import settings
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
+from gallery_app.views import CustomLoginView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('gallery_app.urls')), 
     path('api/', include('gallery_api.urls')),
+   path('login/', CustomLoginView.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 
 ]
 
